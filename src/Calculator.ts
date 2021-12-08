@@ -56,4 +56,20 @@ export class Calculator{
         }
         this.getDisplay().innerHTML = newValue.slice(0, newValue.length - 1);
     }
+
+    public addNumbers(){
+        
+    }
+
+    public substractNumbers(){
+
+    }
+
+    public multiplyNumbers(){
+
+    }
+
+    public divideNumbers(){
+
+    }
 }
