@@ -1,81 +1,87 @@
-export class Calculator{
+export class Calculator {
 
-    private readonly display: Element;
-    private alreadyTyped: boolean = false;
-    private previousValue: number = 0;
-    private presentValue: string = "";
+    alreadyTyped = false;
+    previousValue = 0;
+    presentValue = "";
+    operation = "";
 
-    constructor(display: Element){
+    constructor(display) {
         this.display = display;
     }
 
-    setAlreadyTyped(value:boolean): void{
+    setAlreadyTyped(value) {
         this.alreadyTyped = value;
     }
 
-    getAlreadyTyped(): boolean{
+    getAlreadyTyped() {
         return this.alreadyTyped;
     }
 
-    public getDisplay(): Element {
+    getDisplay() {
         return this.display;
     }
-    
-    public getPreviousValue(): number | null{
+
+    getPreviousValue() {
         return this.previousValue;
     }
 
-    public setPreviousValue(value: number): void{
+    setPreviousValue(value) {
         this.previousValue = value;
     }
 
-    public addPointToDisplay(): void{
-        if(!this.getAlreadyTyped()){
+    addPointToDisplay() {
+        if (!this.getAlreadyTyped()) {
             this.presentValue += ".";
             this.display.innerHTML = this.presentValue;
             this.setAlreadyTyped(true);
         }
     }
 
-    public clearDisplay(): void{
+    clearDisplay() {
         this.display.innerHTML = "";
         this.presentValue = "";
         this.setAlreadyTyped(false);
     }
 
-    public resetCalculator(){
+    resetCalculator() {
         this.clearDisplay();
         this.setPreviousValue(0);
     }
 
-    public setNumericButtonsFunctionality(s: string): void{
+    setNumericButtonsFunctionality(s) {
         this.presentValue += s;
         this.display.innerHTML = this.presentValue;
     }
 
-    public deleteFromDisplay(){
+    deleteFromDisplay() {
         const newValue = this.display.innerHTML;
-        if(newValue[newValue.length - 1] === "."){
+        if (newValue[newValue.length - 1] === ".") {
             this.setAlreadyTyped(false);
         }
         this.display.innerHTML = newValue.slice(0, newValue.length - 1);
     }
 
-    public addNumbers(){
-        this.presentValue = "";
+    addNumbers() {
         this.setPreviousValue(
             this.previousValue + parseFloat(this.presentValue)
-        )
-        console.log(this.previousValue);
-        console.log(this.presentValue);
+        );
         this.display.innerHTML = this.previousValue.toString();
+        this.presentValue = "";
     }
 
-    // public substractNumbers(){
-    //     let value = parseFloat(this.display.innerHTML);
-    //     this.setPreviousValue(value - this.previousValue);
-    //     this.display.innerHTML = this.previousValue.toString();
-    // }
+    setOperation(e) {
+        const element = e.target;
+        if (e.target) this.operation = e.target.innerHTML;
+    }
+
+    equal() {
+
+        }
+        // public substractNumbers(){
+        //     let value = parseFloat(this.display.innerHTML);
+        //     this.setPreviousValue(value - this.previousValue);
+        //     this.display.innerHTML = this.previousValue.toString();
+        // }
 
     // public multiplyNumbers(){
     //     let value = parseFloat(this.display.innerHTML);
