@@ -2,6 +2,7 @@ export class Calculator {
     constructor(display) {
         this.alreadyTyped = false;
         this.previousValue = 0;
+        this.presentValue = "";
         this.display = display;
     }
     setAlreadyTyped(value) {
@@ -21,12 +22,14 @@ export class Calculator {
     }
     addPointToDisplay() {
         if (!this.getAlreadyTyped()) {
-            this.display.innerHTML += ".";
+            this.presentValue += ".";
+            this.display.innerHTML = this.presentValue;
             this.setAlreadyTyped(true);
         }
     }
     clearDisplay() {
         this.display.innerHTML = "";
+        this.presentValue = "";
         this.setAlreadyTyped(false);
     }
     resetCalculator() {
@@ -34,7 +37,8 @@ export class Calculator {
         this.setPreviousValue(0);
     }
     setNumericButtonsFunctionality(s) {
-        this.display.innerHTML += s;
+        this.presentValue += s;
+        this.display.innerHTML = this.presentValue;
     }
     deleteFromDisplay() {
         const newValue = this.display.innerHTML;
@@ -44,27 +48,10 @@ export class Calculator {
         this.display.innerHTML = newValue.slice(0, newValue.length - 1);
     }
     addNumbers() {
-        let value = parseFloat(this.display.innerHTML);
-        this.setPreviousValue(value + this.previousValue);
-        this.display.innerHTML = this.previousValue.toString();
-    }
-    substractNumbers() {
-        let value = parseFloat(this.display.innerHTML);
-        this.setPreviousValue(value - this.previousValue);
-        this.display.innerHTML = this.previousValue.toString();
-    }
-    multiplyNumbers() {
-        let value = parseFloat(this.display.innerHTML);
-        this.setPreviousValue(value * this.previousValue);
-        this.display.innerHTML = this.previousValue.toString();
-    }
-    divideNumbers() {
-        let value = parseFloat(this.display.innerHTML);
-        if (!value) {
-            this.display.innerHTML = "Invalid operation";
-            return;
-        }
-        this.setPreviousValue(value / this.previousValue);
+        this.presentValue = "";
+        this.setPreviousValue(this.previousValue + parseFloat(this.presentValue));
+        console.log(this.previousValue);
+        console.log(this.presentValue);
         this.display.innerHTML = this.previousValue.toString();
     }
 }

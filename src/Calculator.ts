@@ -3,6 +3,7 @@ export class Calculator{
     private readonly display: Element;
     private alreadyTyped: boolean = false;
     private previousValue: number = 0;
+    private presentValue: string = "";
 
     constructor(display: Element){
         this.display = display;
@@ -20,7 +21,7 @@ export class Calculator{
         return this.display;
     }
     
-    public getPreviousValue(): number{
+    public getPreviousValue(): number | null{
         return this.previousValue;
     }
 
@@ -30,13 +31,15 @@ export class Calculator{
 
     public addPointToDisplay(): void{
         if(!this.getAlreadyTyped()){
-            this.display.innerHTML += ".";
+            this.presentValue += ".";
+            this.display.innerHTML = this.presentValue;
             this.setAlreadyTyped(true);
         }
     }
 
     public clearDisplay(): void{
         this.display.innerHTML = "";
+        this.presentValue = "";
         this.setAlreadyTyped(false);
     }
 
@@ -46,7 +49,8 @@ export class Calculator{
     }
 
     public setNumericButtonsFunctionality(s: string): void{
-        this.display.innerHTML += s;
+        this.presentValue += s;
+        this.display.innerHTML = this.presentValue;
     }
 
     public deleteFromDisplay(){
@@ -58,30 +62,34 @@ export class Calculator{
     }
 
     public addNumbers(){
-        let value = parseFloat(this.display.innerHTML);
-        this.setPreviousValue(value + this.previousValue);
+        this.presentValue = "";
+        this.setPreviousValue(
+            this.previousValue + parseFloat(this.presentValue)
+        )
+        console.log(this.previousValue);
+        console.log(this.presentValue);
         this.display.innerHTML = this.previousValue.toString();
     }
 
-    public substractNumbers(){
-        let value = parseFloat(this.display.innerHTML);
-        this.setPreviousValue(value - this.previousValue);
-        this.display.innerHTML = this.previousValue.toString();
-    }
+    // public substractNumbers(){
+    //     let value = parseFloat(this.display.innerHTML);
+    //     this.setPreviousValue(value - this.previousValue);
+    //     this.display.innerHTML = this.previousValue.toString();
+    // }
 
-    public multiplyNumbers(){
-        let value = parseFloat(this.display.innerHTML);
-        this.setPreviousValue(value * this.previousValue);
-        this.display.innerHTML = this.previousValue.toString();
-    }
+    // public multiplyNumbers(){
+    //     let value = parseFloat(this.display.innerHTML);
+    //     this.setPreviousValue(value * this.previousValue);
+    //     this.display.innerHTML = this.previousValue.toString();
+    // }
 
-    public divideNumbers(){
-        let value = parseFloat(this.display.innerHTML);
-        if(!value){
-            this.display.innerHTML = "Invalid operation";
-            return;
-        }
-        this.setPreviousValue(value / this.previousValue);
-        this.display.innerHTML = this.previousValue.toString();
-    }
+    // public divideNumbers(){
+    //     let value = parseFloat(this.display.innerHTML);
+    //     if(!value){
+    //         this.display.innerHTML = "Invalid operation";
+    //         return;
+    //     }
+    //     this.setPreviousValue(value / this.previousValue);
+    //     this.display.innerHTML = this.previousValue.toString();
+    // }
 }

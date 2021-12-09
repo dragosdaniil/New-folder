@@ -20,6 +20,6 @@ clearBtn === null || clearBtn === void 0 ? void 0 : clearBtn.addEventListener("c
 deleteBtn === null || deleteBtn === void 0 ? void 0 : deleteBtn.addEventListener("click", () => calculator.deleteFromDisplay());
 pointBtn === null || pointBtn === void 0 ? void 0 : pointBtn.addEventListener("click", () => calculator.addPointToDisplay());
 addBtn === null || addBtn === void 0 ? void 0 : addBtn.addEventListener("click", () => calculator.addNumbers());
-substractBtn === null || substractBtn === void 0 ? void 0 : substractBtn.addEventListener("click", () => calculator.substractNumbers());
-multiplyBtn === null || multiplyBtn === void 0 ? void 0 : multiplyBtn.addEventListener("click", () => calculator.multiplyNumbers());
-divideBtn === null || divideBtn === void 0 ? void 0 : divideBtn.addEventListener("click", () => calculator.divideNumbers());
+// substractBtn?.addEventListener("click", () => calculator.substractNumbers());
+// multiplyBtn?.addEventListener("click", () => calculator.multiplyNumbers());
+// divideBtn?.addEventListener("click", () => calculator.divideNumbers());
