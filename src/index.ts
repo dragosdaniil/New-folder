@@ -29,3 +29,7 @@ resetBtn?.addEventListener("click", () => calculator.resetCalculator());
 clearBtn?.addEventListener("click", () => calculator.clearDisplay());
 deleteBtn?.addEventListener("click", () => calculator.deleteFromDisplay());
 pointBtn?.addEventListener("click", () => calculator.addPointToDisplay());
+addBtn?.addEventListener("click", () => calculator.addNumbers());
+substractBtn?.addEventListener("click", () => calculator.substractNumbers());
+multiplyBtn?.addEventListener("click", () => calculator.multiplyNumbers());
+divideBtn?.addEventListener("click", () => calculator.divideNumbers());

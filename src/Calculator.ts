@@ -30,13 +30,13 @@ export class Calculator{
 
     public addPointToDisplay(): void{
         if(!this.getAlreadyTyped()){
-            this.getDisplay().innerHTML += ".";
+            this.display.innerHTML += ".";
             this.setAlreadyTyped(true);
         }
     }
 
     public clearDisplay(): void{
-        this.getDisplay().innerHTML = "";
+        this.display.innerHTML = "";
         this.setAlreadyTyped(false);
     }
 
@@ -46,30 +46,42 @@ export class Calculator{
     }
 
     public setNumericButtonsFunctionality(s: string): void{
-        this.getDisplay().innerHTML += s;
+        this.display.innerHTML += s;
     }
 
     public deleteFromDisplay(){
-        const newValue = this.getDisplay().innerHTML;
+        const newValue = this.display.innerHTML;
         if(newValue[newValue.length - 1] === "."){
             this.setAlreadyTyped(false);
         }
-        this.getDisplay().innerHTML = newValue.slice(0, newValue.length - 1);
+        this.display.innerHTML = newValue.slice(0, newValue.length - 1);
     }
 
     public addNumbers(){
-        
+        let value = parseFloat(this.display.innerHTML);
+        this.setPreviousValue(value + this.previousValue);
+        this.display.innerHTML = this.previousValue.toString();
     }
 
     public substractNumbers(){
-
+        let value = parseFloat(this.display.innerHTML);
+        this.setPreviousValue(value - this.previousValue);
+        this.display.innerHTML = this.previousValue.toString();
     }
 
     public multiplyNumbers(){
-
+        let value = parseFloat(this.display.innerHTML);
+        this.setPreviousValue(value * this.previousValue);
+        this.display.innerHTML = this.previousValue.toString();
     }
 
     public divideNumbers(){
-
+        let value = parseFloat(this.display.innerHTML);
+        if(!value){
+            this.display.innerHTML = "Invalid operation";
+            return;
+        }
+        this.setPreviousValue(value / this.previousValue);
+        this.display.innerHTML = this.previousValue.toString();
     }
 }

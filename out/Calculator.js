@@ -21,12 +21,12 @@ export class Calculator {
     }
     addPointToDisplay() {
         if (!this.getAlreadyTyped()) {
-            this.getDisplay().innerHTML += ".";
+            this.display.innerHTML += ".";
             this.setAlreadyTyped(true);
         }
     }
     clearDisplay() {
-        this.getDisplay().innerHTML = "";
+        this.display.innerHTML = "";
         this.setAlreadyTyped(false);
     }
     resetCalculator() {
@@ -34,13 +34,37 @@ export class Calculator {
         this.setPreviousValue(0);
     }
     setNumericButtonsFunctionality(s) {
-        this.getDisplay().innerHTML += s;
+        this.display.innerHTML += s;
     }
     deleteFromDisplay() {
-        const newValue = this.getDisplay().innerHTML;
+        const newValue = this.display.innerHTML;
         if (newValue[newValue.length - 1] === ".") {
             this.setAlreadyTyped(false);
         }
-        this.getDisplay().innerHTML = newValue.slice(0, newValue.length - 1);
+        this.display.innerHTML = newValue.slice(0, newValue.length - 1);
+    }
+    addNumbers() {
+        let value = parseFloat(this.display.innerHTML);
+        this.setPreviousValue(value + this.previousValue);
+        this.display.innerHTML = this.previousValue.toString();
+    }
+    substractNumbers() {
+        let value = parseFloat(this.display.innerHTML);
+        this.setPreviousValue(value - this.previousValue);
+        this.display.innerHTML = this.previousValue.toString();
+    }
+    multiplyNumbers() {
+        let value = parseFloat(this.display.innerHTML);
+        this.setPreviousValue(value * this.previousValue);
+        this.display.innerHTML = this.previousValue.toString();
+    }
+    divideNumbers() {
+        let value = parseFloat(this.display.innerHTML);
+        if (!value) {
+            this.display.innerHTML = "Invalid operation";
+            return;
+        }
+        this.setPreviousValue(value / this.previousValue);
+        this.display.innerHTML = this.previousValue.toString();
     }
 }
