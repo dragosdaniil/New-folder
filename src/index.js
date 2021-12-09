@@ -1,7 +1,7 @@
 import { Calculator } from "./Calculator.js";
 
 const numberBtns = document.querySelectorAll("div[number_type]");
-
+// numberBtns.forEach(btn => console.log(btn.innerHTML))
 const multiplyBtn = document.querySelector(".multiply");
 const divideBtn = document.querySelector(".divide");
 const addBtn = document.querySelector(".add");
@@ -21,7 +21,10 @@ resetBtn.addEventListener("click", () => calculator.resetCalculator());
 clearBtn.addEventListener("click", () => calculator.clearDisplay());
 deleteBtn.addEventListener("click", () => calculator.deleteFromDisplay());
 pointBtn.addEventListener("click", () => calculator.addPointToDisplay());
+
 addBtn.addEventListener("click", () => calculator.addNumbers());
-// substractBtn?.addEventListener("click", () => calculator.substractNumbers());
-// multiplyBtn?.addEventListener("click", () => calculator.multiplyNumbers());
-// divideBtn?.addEventListener("click", () => calculator.divideNumbers());
+substractBtn.addEventListener("click", () => calculator.substractNumbers());
+multiplyBtn.addEventListener("click", () => calculator.multiplyNumbers());
+divideBtn.addEventListener("click", () => calculator.divideNumbers());
+
+document.querySelector(".buttons").addEventListener("click", (e) => calculator.setOperation(e));
