@@ -47,7 +47,11 @@ export class Calculator {
     }
 
     substractNumbers() {
-        this.previousValue -= parseFloat(this.presentValue);
+        if (!this.previousValue) {
+            this.previousValue = parseFloat(this.presentValue);
+        } else {
+            this.previousValue -= parseFloat(this.presentValue);
+        }
         this.display.innerHTML = this.previousValue.toString();
         this.presentValue = "";
     }
@@ -70,7 +74,6 @@ export class Calculator {
 
     setOperation(e) {
         if (e.target.hasAttribute("operation")) this.operation = e.target.getAttribute("operation");
-        console.log(this.operation)
     }
 
     equal() {
