@@ -49,7 +49,6 @@ export class Calculator {
         } else {
             switch (this.operation) {
                 case "add":
-                    console.log("In ADD");
                     this.previousValue = op.addNumbers(this.previousValue, newValue);
                     break;
                 case "substract":
@@ -72,20 +71,6 @@ export class Calculator {
     }
 
     equal() {
-        switch (this.operation) {
-            case "add":
-                console.log("In ADD")
-                this.addNumbers();
-                break;
-            case "substract":
-                this.substract();
-                break;
-            case "multiply":
-                this.multiplty();
-                break;
-            case "divide":
-                this.divideNumbers();
-                break;
-        }
+        this.doCalculation();
     }
 }

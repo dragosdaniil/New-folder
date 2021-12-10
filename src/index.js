@@ -18,6 +18,7 @@ clearBtn.addEventListener("click", () => calculator.clearDisplay());
 deleteBtn.addEventListener("click", () => calculator.deleteFromDisplay());
 pointBtn.addEventListener("click", () => calculator.addPointToDisplay());
 
+equalBtn.addEventListener("click", () => calculator.equal());
 
 operationsBtns.forEach(btn => btn.addEventListener("click", () => calculator.doCalculation()));
 document.querySelector(".buttons").addEventListener("click", (e) => calculator.setOperation(e));
