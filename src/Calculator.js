@@ -44,6 +44,7 @@ export class Calculator {
 
     doCalculation() {
         const newValue = parseFloat(this.presentValue);
+        console.log(newValue);
         if (!this.previousValue) {
             this.previousValue = newValue;
         } else {
@@ -72,5 +73,6 @@ export class Calculator {
 
     equal() {
         this.doCalculation();
+        this.presentValue = "0";
     }
 }
