@@ -1,7 +1,9 @@
+import * as op from "./Operations.js";
+
 export class Calculator {
 
     alreadyTyped = false;
-    previousValue = 0;
+    previousValue = null;
     presentValue = "";
     operation = "";
 
@@ -24,7 +26,7 @@ export class Calculator {
 
     resetCalculator() {
         this.clearDisplay();
-        this.previousValue = 0;
+        this.previousValue = null;
     }
 
     setNumericButtonsFunctionality(s) {
@@ -40,34 +42,27 @@ export class Calculator {
         this.display.innerHTML = newValue.slice(0, newValue.length - 1);
     }
 
-    addNumbers() {
-        this.previousValue += parseFloat(this.presentValue);
-        this.display.innerHTML = this.previousValue.toString();
-        this.presentValue = "";
-    }
-
-    substractNumbers() {
+    doCalculation() {
+        const newValue = parseFloat(this.presentValue);
         if (!this.previousValue) {
-            this.previousValue = parseFloat(this.presentValue);
+            this.previousValue = newValue;
         } else {
-            this.previousValue -= parseFloat(this.presentValue);
-        }
-        this.display.innerHTML = this.previousValue.toString();
-        this.presentValue = "";
-    }
-
-    multiplyNumbers() {
-        this.previousValue *= parseFloat(this.presentValue)
-        this.display.innerHTML = this.previousValue.toString();
-        this.presentValue = "";
-    }
-
-    divideNumbers() {
-        if (this.presentValue) {
-            this.previousValue /= parseFloat(this.presentValue);
+            switch (this.operation) {
+                case "add":
+                    console.log("In ADD");
+                    this.previousValue = op.addNumbers(this.previousValue, newValue);
+                    break;
+                case "substract":
+                    this.previousValue = op.substractNumbers(this.previousValue, newValue);
+                    break;
+                case "multiply":
+                    this.previousValue = op.multiplyNumbers(this.previousValue, newValue);
+                    break;
+                case "divide":
+                    this.previousValue = op.divideNumbers(this.previousValue, newValue);
+                    break;
+            }
             this.display.innerHTML = this.previousValue.toString();
-        } else {
-            this.display.innerHTML = "Invalid operation!";
         }
         this.presentValue = "";
     }
