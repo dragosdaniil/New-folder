@@ -11,7 +11,7 @@ export class Calculator {
         this.display = display;
     }
     addPointToDisplay() {
-        if (!this.getAlreadyTyped()) {
+        if (!this.alreadyTyped) {
             this.presentValue += ".";
             this.display.innerHTML = this.presentValue;
             this.alreadyTyped = true;
@@ -44,9 +44,10 @@ export class Calculator {
 
     doCalculation() {
         const newValue = parseFloat(this.presentValue);
-        if (!this.previousValue) {
+        if (typeof this.previousValue !== "number") {
             this.previousValue = newValue;
-        } else {
+        } else if(this.presentValue !== ""){
+            
             switch (this.operation) {
                 case "add":
                     this.previousValue = op.addNumbers(this.previousValue, newValue);
@@ -69,6 +70,7 @@ export class Calculator {
             }
             this.display.innerHTML = this.previousValue.toString();
         }
+        this.alreadyTyped = false;
         this.presentValue = "";
     }
 
@@ -78,6 +80,6 @@ export class Calculator {
 
     equal() {
         this.doCalculation();
-        this.presentValue = "0";
+        this.presentValue = "";
     }
 }
