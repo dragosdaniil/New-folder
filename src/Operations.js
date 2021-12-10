@@ -12,9 +12,8 @@ function multiplyNumbers(a, b) {
 
 function divideNumbers(a, b) {
     if (b === 0) {
-        return "Division by 0 is not defined!";
+        throw new Error("Division by 0 is not defined!");
     }
-
     return a / b;
 }
 

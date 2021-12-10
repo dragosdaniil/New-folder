@@ -44,7 +44,6 @@ export class Calculator {
 
     doCalculation() {
         const newValue = parseFloat(this.presentValue);
-        console.log(newValue);
         if (!this.previousValue) {
             this.previousValue = newValue;
         } else {
@@ -59,7 +58,13 @@ export class Calculator {
                     this.previousValue = op.multiplyNumbers(this.previousValue, newValue);
                     break;
                 case "divide":
-                    this.previousValue = op.divideNumbers(this.previousValue, newValue);
+                    try{
+                        this.previousValue = op.divideNumbers(this.previousValue, newValue);
+                    } catch (e){
+                        this.resetCalculator();
+                        this.display.innerHTML = e.message;
+                        return;
+                    }
                     break;
             }
             this.display.innerHTML = this.previousValue.toString();
