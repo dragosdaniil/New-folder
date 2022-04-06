@@ -1,7 +1,7 @@
 import { CalculatorImpl } from "./Calculator.js";
 
-const numberBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll("div[number_type]");
-const operationsBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll("div[operation]");
+const numberBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll("button[number_type]");
+const operationsBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll("button[operation]");
 const equalBtn: HTMLButtonElement = document.querySelector(".equal");
 
 const deleteBtn: HTMLButtonElement = document.querySelector(".delete");
@@ -11,8 +11,7 @@ const resetBtn: HTMLButtonElement = document.querySelector('[button_type="reset_
 const display: HTMLElement = document.querySelector(".calculator__display");
 
 const calculator = new CalculatorImpl(display);
-numberBtns.forEach(btn => btn.addEventListener("click", () => calculator.setNumericButtonsFunctionality(btn.innerHTML)));
-
+numberBtns.forEach(btn => btn.addEventListener("click", () => calculator.setNumericButtonsFunctionality(btn.textContent)));
 resetBtn.addEventListener("click", () => calculator.resetCalculator());
 clearBtn.addEventListener("click", () => calculator.clearDisplay());
 deleteBtn.addEventListener("click", () => calculator.deleteFromDisplay());

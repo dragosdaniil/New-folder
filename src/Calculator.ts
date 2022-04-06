@@ -1,5 +1,5 @@
 import * as op from "./Operations.js";
-import {OperationType} from "./OperationTypes.js"
+import { OperationType } from "./OperationTypes.js"
 
 
 interface Calculator {
@@ -50,7 +50,6 @@ export class CalculatorImpl implements Calculator{
     }
 
     setNumericButtonsFunctionality(s: string) {
-        console.log("HELLO")
         this.presentValue += s;
         this.display.innerHTML = this.presentValue;
     }
